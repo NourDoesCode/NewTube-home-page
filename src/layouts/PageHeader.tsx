@@ -6,6 +6,7 @@ import mic from "../assets/microphone.png";
 import { Search } from "lucide-react";
 import live from "../assets/live.png";
 import { Bell } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 
 import { User } from "lucide-react";
 function PageHeader() {
@@ -14,7 +15,7 @@ function PageHeader() {
     <header className="flex items-center justify-between pt-2 mb-6 mx-4 gap-5">
       {/*logo + hamburger menu */}
       <div
-        className={` sm:gap-5 md:gap-8 flex-shrink-0 items-center ${
+        className={`sm:gap-5 md:gap-8 flex-shrink-0 items-center ${
           showFullWidthSearch ? "hidden" : "flex"
         }`}
       >
@@ -27,7 +28,21 @@ function PageHeader() {
       </div>
 
       {/* search bar and mic */}
-      <form className="hidden md:flex flex-grow sm:gap-3  md:gap-5 items-center justify-center ">
+      <form
+        className={`  flex-grow sm:gap-3  md:gap-5 items-center justify-center ${
+          showFullWidthSearch ? "flex" : "hidden md:flex"
+        }`}
+      >
+        {/* back button */}
+        <button
+          onClick={() => setShowFullWidthSearch(false)}
+          className={`hover:bg-gray-200 p-2 hover:rounded-full mr-3 ${
+            showFullWidthSearch ? "flex" : "hidden"
+          }`}
+        >
+          <ArrowLeft />
+        </button>
+
         {/* search */}
         <div className="flex   flex-grow max-w-[600px]">
           <input
@@ -41,7 +56,7 @@ function PageHeader() {
         </div>
 
         {/* mic */}
-        <div className="flex items-center justify-center py-4 px-4 rounded-full border  border-gray-200 bg-gray-100 hover:bg-gray-300 h-auto w-auto cursor-pointer">
+        <div className="flex items-center justify-center py-4 px-4 rounded-full border  border-gray-200 bg-gray-100 hover:bg-gray-300 h-auto w-auto cursor-pointer ml-3">
           <button type="button">
             <img src={mic} alt="mic" className="h-[20px] w-[20px]" />
           </button>
