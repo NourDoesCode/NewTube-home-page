@@ -12,7 +12,7 @@ import { User } from "lucide-react";
 function PageHeader() {
   const [showFullWidthSearch, setShowFullWidthSearch] = useState(false);
   return (
-    <header className="flex items-center justify-between pt-2 mb-6 mx-4 gap-5">
+    <header className="flex items-center justify-between pt-2 mb-6 mx-4 gap-5 ">
       {/*logo + hamburger menu */}
       <div
         className={`sm:gap-5 md:gap-8 flex-shrink-0 items-center ${

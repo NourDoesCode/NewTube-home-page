@@ -14,9 +14,12 @@ export default function CategoryPills({
   onSelect,
 }: CategoryPillProps) {
   const [isLeftVisible, setIsLeftVisible] = useState(false);
+
   const [isRightVisible, setIsRightVisible] = useState(true);
   const [translate, setTranslate] = useState(0);
+
   const containerRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     if (containerRef.current == null) return;
     const observer = new ResizeObserver((entries) => {
@@ -27,6 +30,7 @@ export default function CategoryPills({
         translate + container.clientWidth < container.scrollWidth
       );
     });
+
     observer.observe(containerRef.current);
     return () => {
       observer.disconnect();
@@ -34,9 +38,12 @@ export default function CategoryPills({
   }, [categories, translate]);
 
   return (
-    <div className="overflow-x-hidden relative" ref={containerRef}>
+    <div
+      className="overflow-x-hidden relative overflow-y-hidden pt-3"
+      ref={containerRef}
+    >
       <div
-        className="flex gap-4 whitespace-nowrap transition-transform w-[max-content]"
+        className="flex gap-4 whitespace-nowrap transition-transform w-[max-content] "
         style={{
           transform: `translateX(-${translate}px)`,
         }}
