@@ -9,8 +9,10 @@ import { Bell } from "lucide-react";
 import { ArrowLeft } from "lucide-react";
 
 import { User } from "lucide-react";
+import { useSidebarContext } from "../contexts/SidebarContext";
 function PageHeader() {
   const [showFullWidthSearch, setShowFullWidthSearch] = useState(false);
+  const { toggle } = useSidebarContext();
   return (
     <header className="flex items-center justify-between pt-2 mb-6 mx-4 gap-5 ">
       {/*logo + hamburger menu */}
@@ -19,7 +21,10 @@ function PageHeader() {
           showFullWidthSearch ? "hidden" : "flex"
         }`}
       >
-        <button className="flex items-center justify-center  h-auto hover:bg-gray-200 p-2 hover:rounded-full">
+        <button
+          onClick={toggle}
+          className="flex items-center justify-center  h-auto hover:bg-gray-200 p-2 hover:rounded-full"
+        >
           <Menu className="w-auto h-auto" />
         </button>
         <a href="/" className="flex items-center ">

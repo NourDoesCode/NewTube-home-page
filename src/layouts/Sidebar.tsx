@@ -26,12 +26,18 @@ import {
 } from "lucide-react";
 import { Children, ElementType, useState } from "react";
 import { playlists, subscriptions } from "../data/sidebar";
+import { useSidebarContext } from "../contexts/SidebarContext";
 
 function Sidebar() {
+  const { isLargeOpen, isSmallOpen } = useSidebarContext();
   return (
     <>
-      {/* sidebar for small screens */}
-      <aside className="sticky top-0 overflow-y-auto scrollbar-hidden pb-4 flex flex-col ml-1 lg:hidden ">
+      {/* small sidebar */}
+      <aside
+        className={`sticky top-0 overflow-y-auto scrollbar-hidden pb-4 flex flex-col ml-1 ${
+          isLargeOpen ? "lg:hidden" : "lg:flex"
+        }`}
+      >
         <SmallSidebarItem Icon={Home} title="Home" url="/" />
         <SmallSidebarItem Icon={Repeat} title="Shorts" url="/shorts" />
         <SmallSidebarItem
@@ -42,8 +48,12 @@ function Sidebar() {
         <SmallSidebarItem Icon={Library} title="Library" url="/library" />
       </aside>
 
-      {/* sidebar for large screens */}
-      <aside className="w-56 lg:sticky top-0 absolute overflow-y-auto scrollbar-hidden pb-4 lg:flex flex-col gap-2 px-2 hidden ">
+      {/* large sidebar */}
+      <aside
+        className={`w-56 lg:sticky top-0 absolute overflow-y-auto scrollbar-hidden pb-4 flex-col gap-2 px-2 hidden ${
+          isLargeOpen ? "lg:flex" : "lg:hidden"
+        } ${isSmallOpen ? "flex z-[999] bg-white max-h-screen  " : "hidden"}`}
+      >
         {/*section1: home + shorts + subscriptions */}
         <LargeSidebarSection>
           {/*home */}
